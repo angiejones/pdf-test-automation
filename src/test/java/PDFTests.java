@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PDFTests extends BaseTests {
 
     @Test
-    public void testInvoices() throws IOException, InterruptedException {
+    public void testInvoices() {
         
         String invoiceNumber = "INV12345";
 
@@ -58,6 +58,12 @@ public class PDFTests extends BaseTests {
         Assert.assertTrue(invoiceNumber + ".pdf file was not moved to test location",
                 FileUtils.moveFile(downloadedPDF, destination));
 
-        Assert.assertTrue("Error validating PDF", EyesManager.validatePDF(destination));
+        try{
+            Assert.assertTrue("Error validating PDF", EyesManager.validatePDF(destination));
+        }
+        catch (InterruptedException|IOException e) {
+            e.printStackTrace();
+            Assert.fail(e.getMessage());
+        }
     }
 }

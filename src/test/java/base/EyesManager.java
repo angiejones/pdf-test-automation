@@ -5,7 +5,6 @@ import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class EyesManager {
 
@@ -27,14 +26,6 @@ public class EyesManager {
         eyes.close();
     }
 
-    public void abort(){
-        eyes.abortIfNotClosed();
-    }
-
-    public Eyes getEyes(){
-        return eyes;
-    }
-
     public static boolean validatePDF(String filepath) throws IOException, InterruptedException {
         String command = String.format(
                 "java -jar resources/ImageTester.jar -k %s -f %s",
@@ -51,5 +42,13 @@ public class EyesManager {
         }
 
         return true;
+    }
+
+    public void abort(){
+        eyes.abortIfNotClosed();
+    }
+
+    public Eyes getEyes(){
+        return eyes;
     }
 }

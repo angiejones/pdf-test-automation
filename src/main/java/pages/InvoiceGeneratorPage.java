@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,7 +11,7 @@ import java.io.File;
 public class InvoiceGeneratorPage {
 
     private WebDriver driver;
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     //HEADER
     private By invoiceTitleField        = By.id("invoice-title");
@@ -44,11 +43,9 @@ public class InvoiceGeneratorPage {
     private By itemDetails_Child        = By.tagName("textarea");
     private By addItemButton            = By.id("invoice-item-add");
 
-    private By notesArea                = By.id("invoice-notes");
     private By getLinkButton            = By.xpath("//span[text()='Get Link']/parent::button");
 
     private By colorSelectList          = By.className("color-select-option");
-
 
 
     public InvoiceGeneratorPage(WebDriver driver){
@@ -144,20 +141,12 @@ public class InvoiceGeneratorPage {
     }
 
     public InvoicePreviewPage clickGetLink(){
-        String invoiceWindowTitle = String.format("Invoice %s - %s",
-                driver.findElement(invoiceNumberField).getAttribute("value"),
-                driver.findElement(fromNameField).getAttribute("value"));
-
         driver.findElement(getLinkButton).click();
-        return new InvoicePreviewPage(driver, invoiceWindowTitle);
+        return new InvoicePreviewPage(driver);
     }
-
-
 
     private WebElement getItemRow(int index){
         String xpath = String.format(itemRow_Format, index);
         return driver.findElement(By.xpath(xpath));
     }
-
-
 }

@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,11 +11,11 @@ import java.io.File;
 public class InvoicePreviewPage {
 
     private WebDriver driver;
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     private By pdfButton = By.xpath("//span[text()='PDF']/parent::button");
 
-    public InvoicePreviewPage(WebDriver driver, String windowTitle) {
+    public InvoicePreviewPage(WebDriver driver) {
         this.driver = driver;
 
         wait = new WebDriverWait(driver, 5);
